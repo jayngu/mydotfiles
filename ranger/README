@@ -1,0 +1,9 @@
+# Create configuration directory for ranger files by running it
+ranger
+shift+q
+
+# Copy configuration files with the following command:
+ranger --copy-config=all
+
+# Modify the files later located at:
+~/.config/ranger
