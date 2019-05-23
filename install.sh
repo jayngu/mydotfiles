@@ -23,7 +23,7 @@ sudo make install
 
 
 # Install programs
-sudo apt-get install -y i3status i3lock feh compton ranger caca-utils
+sudo apt-get install -y i3status i3lock feh compton ranger caca-utils udiskie
 
 # restart gdm or reboot;  doing this
 # systemctl restart gdm

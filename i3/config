@@ -182,7 +182,8 @@ bar {
 }
 
 # Autostart
-exec_always --no-startup-id compton
+exec_always --no-startup-id compton #transparent windows
+exec_always --no-startup-id udiskie -ans & # automount removable storage
 
 # Color Settings
 set $bg-color 	         #2f343f
