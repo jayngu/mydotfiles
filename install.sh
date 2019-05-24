@@ -26,6 +26,29 @@ sudo make install
 # Install programs
 sudo apt-get install -y feh dmenu arandr compton ranger caca-utils udiskie
 
+# Install Weather Fonts
+# cd ./weather-icons/font 
+# Open the font with file manager and install the .tff file 
+cd /tmp
+git clone https://github.com/erikflowers/weather-icons.git
+
+
+# Install fonts for polybar
+sudo apt-get install -y ttf-unifont
+cd /tmp
+git clone https://github.com/stark/siji && cd siji
+
+# run ./install.sh
+# By default Siji will be installed in your $HOME/.fonts 
+# Ubuntu location $HOME/.local/share/fonts?
+# Enable bitmaps on Ubuntu 18.04
+sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf && fc-cache
+
+# fc-list | grep "<name-of-font>" (siji -bitmap, unifont -ttf ) to check fonts
+
+# Install dependencies for Weather module
+sudo apt install -y jq
+
 # Install dependencies for polybar
 sudo apt-get install -y mpd cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libpulse-dev libxcb-composite0-dev
 

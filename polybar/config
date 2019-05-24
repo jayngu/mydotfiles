@@ -27,10 +27,15 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
-; home setup
-monitor = "DP-1"
+[bar/topBar1]
+;home setup
+;monitor = "DP-1"
+
+;office setup
+monitor = "HDMI-1"
+
 ;monitor = ${env:MONITOR:HDMI-1}
+
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -53,9 +58,10 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = fixed:pixelsize=12;1
+font-1 = unifont:fontformat=truetype:size=15:antialias=false;0
+font-2 = siji:pixelsize=20;1
+font-3 = Weather Icons:fontformat=Regular:size=16;1
 
 modules-left = bspwm i3
 modules-center = mpd
@@ -380,6 +386,28 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/openweathermap]
+type = custom/script
+exec = /home/jnguyen/.config/polybar/openweathermap.sh
+exec-if = ping openweathermap.org -c 1
+interval = 600
+; The -font property is a 1-based index of available fonts (which means that *-font = 1 will use font-0).
+;label-active-font = 3
+label-font = 3
+
+[module/weather]
+type = custom/script
+exec = /home/jnguyen/.config/polybar/wttr.sh
+exec-if = ping wttr.in -c 1
+tail = true
+interval = 5
+
+
+label = %output%
+label-font = 3
+
+
 
 [module/powermenu]
 type = custom/menu
