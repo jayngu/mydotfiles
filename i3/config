@@ -18,7 +18,7 @@ for_window [class="^.*"] border pixel 2
 
 # Declare variables
 set $mod Mod4
-set $user jnguyen
+set $user jayngu
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -177,13 +177,19 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+#bar {
+#        status_command i3status
+#}
+
+# Monitor Settings
+#
+# Home
+exec --no-startup-id xrandr --output DP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DVI-I-1 --off --output DVI-D-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output HDMI-1 --off
 
 # Autostart
-exec_always --no-startup-id compton #transparent windows
-exec_always --no-startup-id udiskie -ans & # automount removable storage
+exec --no-startup-id compton #transparent windows
+exec --no-startup-id udiskie -ans & # automount removable storage
+exec_always --no-startup-id /home/$user/.config/polybar/launch.sh # launch polybar
 
 # Color Settings
 set $bg-color 	         #2f343f
@@ -199,9 +205,14 @@ client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-co
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #424242
 
 # Wallpaper settings
-exec_always feh --bg-scale --randomize /home/$user/Pictures/Wallpapers
+exec --no-startup-id feh --bg-scale --randomize /home/$user/Pictures/Wallpapers
 
 # Pulse Audio Controls
-bindsym $mod+F12 exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym $mod+F11 exec pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym $mod+shift+F12 exec pactl set-sink-mute 0 toggle # mute sound
+#bindsym $mod+F12 exec pactl set-sink-volume 0 +5% #increase sound volume
+#bindsym $mod+F11 exec pactl set-sink-volume 0 -5% #decrease sound volume
+#bindsym $mod+shift+F12 exec pactl set-sink-mute 0 toggle # mute sound
+
+# Alsa Audio Controls
+bindsym $mod+F12 exec "amixer -q sset Master,0 1+ unmute"
+bindsym $mod+F11 exec "amixer -q sset Master,0 1- unmute"
+bindsym $mod+shift+F12 exec "amixer -q sset Master,0 toggle"
